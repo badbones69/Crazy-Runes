@@ -1,0 +1,102 @@
+Runes:
+  Medic:
+    Name: 'Medic'
+    Active: True
+    Item: '322'
+    Slot: 11
+    Description:
+      - '&7Medic has a more advanced regeneration system.'
+      - '&7This allows the medic to fight and if needed'
+      - '&7flee for a few moments and heal up quickly'
+      - '&7before coming back to finish off the enemy.'
+      - '&6Level: &3%Level%'
+    Level-Description:
+      - '&7Gives you Regeneration %Level%.'
+  Tank:
+    Name: 'Tank'
+    Active: True
+    Item: '311'
+    Slot: 13
+    Description:
+      - '&7Tank has a more powerful heal system.'
+      - '&7This allows the tank to fight longer'
+      - '&7in battle with out having to retreat'
+      - '&7from the fight.'
+      - '&6Level: &3%Level%'
+    Level-Description:
+      - '&7Gives you %Level% extra hearts.'
+  Pyro:
+    Name: 'Pyro'
+    Active: True
+    Item: '259'
+    Slot: 15
+    Description:
+        - '&7Pyro has the power to set enemies a blaze.'
+        - '&7This allows players to go into battle'
+        - '&7and deal some heavy burn damage while fighting.'
+        - '&6Level: &3%Level%'
+    Level-Description:
+      - '&7Has a %Level%% chance to set fire to the enemy.'
+  Surviver:
+    Name: 'Surviver'
+    Active: True
+    Item: '294'
+    Slot: 17
+    Description:
+        - '&7Surviver has the ability fight and never feel hungry.'
+        - '&7This allows the player to go into fights and not need to'
+        - '&7flee to eat or to stop getting kills because they need'
+        - '&7to feast on something in order to heal up.'
+        - '&6Level: &3%Level%'
+    Level-Description:
+      - '&7Gives you no hunger.'
+  Leech:
+    Name: 'Leech'
+    Active: True
+    Item: '267'
+    Slot: 29
+    Description:
+        - '&7Leech has the power to suck enemies life right from them.'
+        - '&7This allows players to stay alive longer in battle and'
+        - '&7let them heal up while fighting dangerous enemies.'
+        - '&6Level: &3%Level%'
+    Level-Description:
+      - '&7Has a %Level%% chance of taking the enemys health.'
+  Reborn:
+    Name: 'Reborn'
+    Active: True
+    Item: '2'
+    Slot: 31
+    Description:
+        - '&7Reborn gives you the ability to go from low heal to haft health.'
+        - '&7This gives the player the ability heal them so if your about'
+        - '&7to run out of health it has a chance to give you haft health and'
+        - '&7go and take out your enemy or retreat to fight another time.'
+        - '&6Level: &3%Level%'
+    Level-Description:
+      - '&7Has a %Level%% chance to set you at haft health at when low.'
+  Rocket:
+    Name: 'Rocket'
+    Active: True
+    Item: '46'
+    Slot: 33
+    Description:
+        - '&7Rocket has the ability to save you in an intense battle.'
+        - '&7This allows you to retreat from the enemy or'
+        - '&7get a break from a battle.'
+        - '&6Level: &3%Level%'
+    Level-Description:
+      - '&7Has a %Level%% chance to send you flying away from the enemy.'
+  Speed:
+    Name: 'Speed'
+    Active: True
+    Item: '288'
+    Slot: 35
+    Description:
+        - '&7Speed allows you to strafe or flee in a battle with ez.'
+        - '&7Speed gives the player much faster movement that can allow'
+        - '&7the player to flee from battle without the enemy being able'
+        - '&7to fallow them as they try and survive the fight.'
+        - '&6Level: &3%Level%'
+    Level-Description:
+      - '&7Gives you %Level%% faster movement.'
