@@ -28,7 +28,7 @@ public class GUIControl implements Listener{
 			if(Main.runes.isActive(rune)){
 				List<String> Lore = new ArrayList<String>();
 				for(String lore : Main.runes.getDescription(rune)){
-					Lore.add(lore.replaceAll("%Level%", PlayerRunes.getRuneLevel(player, rune) + "").replaceAll("%level%", PlayerRunes.getRuneLevel(player, rune) + ""));
+					Lore.add(lore.replaceAll("%level%", PlayerRunes.getRuneLevel(player, rune) + "").replaceAll("%level%", PlayerRunes.getRuneLevel(player, rune) + ""));
 				}
 				ItemStack item = Api.makeItem(Main.runes.getMaterial(rune), 1, "&6&l" + Main.runes.getCustomName(rune), Lore);
 				inv.setItem(Main.runes.getSlot(rune), item);
@@ -53,7 +53,7 @@ public class GUIControl implements Listener{
 			ItemStack block = null;
 			List<String> Lore = new ArrayList<String>();
 			for(String lore : Main.runes.getLevelDescription(rune)){
-				Lore.add(lore.replaceAll("%Level%", rune.getPower() * i + "").replaceAll("%level%", rune.getPower() * i + ""));
+				Lore.add(lore.replaceAll("%level%", rune.getPower() * i + "").replaceAll("%level%", rune.getPower() * i + ""));
 			}
 			Lore.add("&6Level: &7" + i);
 			if(i <= PlayerRunes.getRuneLevel(player, rune)){
