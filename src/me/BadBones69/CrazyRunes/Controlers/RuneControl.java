@@ -32,9 +32,9 @@ public class RuneControl implements Listener{
 	
 	public static void setSpeed(Player player, Integer level){
 		if(level >= 1){
-			player.setWalkSpeed(.2F + (.1F * level));
+			player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 99999999*20, level-1));
 		}else{
-			player.setWalkSpeed(.2F);
+			player.removePotionEffect(PotionEffectType.SPEED);
 		}
 	}
 	
@@ -43,7 +43,7 @@ public class RuneControl implements Listener{
 		player.setMaxHealth(20 + health);
 	}
 	
-	public static void setSurviver(Player player, Boolean toggle){
+	public static void setSurvivor(Player player, Boolean toggle){
 		if(toggle){
 			player.setSaturation(1000000);
 			player.setFoodLevel(20);

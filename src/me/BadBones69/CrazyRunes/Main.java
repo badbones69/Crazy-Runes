@@ -55,6 +55,8 @@ public class Main extends JavaPlugin{
 					if(!Api.hasPermission(sender, "Access"))return true;
 					sender.sendMessage(Api.color("&b/Runes &7- Allows you to pick your runes you wish to use."));
 					sender.sendMessage(Api.color("&b/Runes Check [Player] &7- Check a players runes."));
+					sender.sendMessage(Api.color("&b/Runes Add <Amount> [Player] &7- Give a player more Credits."));
+					sender.sendMessage(Api.color("&b/Runes Remove <Amount> [Player] &7- Take away a players Credits."));
 					sender.sendMessage(Api.color("&b/Runes Reload &7- Reloads the runes files."));
 					sender.sendMessage(Api.color("&b/Runes Help &7- Shows the runes help menu."));
 					return true;
@@ -71,6 +73,64 @@ public class Main extends JavaPlugin{
 						PlayerRunes.loadPlayer(player);
 					}
 					sender.sendMessage(Api.color(Api.getPrefix() + "&7You have just reloaded all the files."));
+					return true;
+				}
+				if(args[0].equalsIgnoreCase("Add")){// /Runes Add <Amount> [Player]
+					if(!Api.hasPermission(sender, "Admin"))return true;
+					if(args.length >= 2){
+						int amount = 0;
+						Player player = null;
+						if(!Api.isInt(args[1])){
+							sender.sendMessage(Api.getPrefix()+Api.color("&cThat is not a number."));
+							return true;
+						}else{
+							amount = Integer.parseInt(args[1]);
+						}
+						if(args.length >= 3){
+							if(!Api.isOnline(args[2], sender))return true;
+							player = Api.getPlayer(args[2]);
+						}else{
+							if(sender instanceof Player){
+								player = (Player) sender;
+							}else{
+								sender.sendMessage(Api.getPrefix()+Api.color("&cYou must be a player to use this command."));
+								return true;
+							}
+						}
+						PlayerRunes.addCredits(player, amount);
+						sender.sendMessage(Api.getPrefix()+Api.color("&7You have just given &6" + player.getName() + " " + amount + " &7more credits."));
+						return true;
+					}
+					sender.sendMessage(Api.getPrefix()+Api.color("&c/Runes Add <Amount> [Player]"));
+					return true;
+				}
+				if(args[0].equalsIgnoreCase("Remove")){// /Runes Remove <Amount> [Player]
+					if(!Api.hasPermission(sender, "Admin"))return true;
+					if(args.length >= 2){
+						int amount = 0;
+						Player player = null;
+						if(!Api.isInt(args[1])){
+							sender.sendMessage(Api.getPrefix()+Api.color("&cThat is not a number."));
+							return true;
+						}else{
+							amount = Integer.parseInt(args[1]);
+						}
+						if(args.length >= 3){
+							if(!Api.isOnline(args[2], sender))return true;
+							player = Api.getPlayer(args[2]);
+						}else{
+							if(sender instanceof Player){
+								player = (Player) sender;
+							}else{
+								sender.sendMessage(Api.getPrefix()+Api.color("&cYou must be a player to use this command."));
+								return true;
+							}
+						}
+						PlayerRunes.removeCredits(player, amount);
+						sender.sendMessage(Api.getPrefix()+Api.color("&7You have just removed &6" + amount + " &7credits from &6" + player.getName() + "&7."));
+						return true;
+					}
+					sender.sendMessage(Api.getPrefix()+Api.color("&c/Runes Remove <Amount> [Player]"));
 					return true;
 				}
 				if(args[0].equalsIgnoreCase("Check")){// /Runes Check [Player]
@@ -98,6 +158,8 @@ public class Main extends JavaPlugin{
 						msg += "\n";
 					}
 					sender.sendMessage(Api.color("&7A list of all &b" + player.getName() + "'s &7runes."));
+					sender.sendMessage(Api.color("&7Max Credits: &3" + PlayerRunes.getMaxCredits(player)));
+					sender.sendMessage(Api.color("&7Available Credits: &3" + PlayerRunes.getAvailableCredits(player)));
 					sender.sendMessage(Api.color(msg));
 					return true;
 				}

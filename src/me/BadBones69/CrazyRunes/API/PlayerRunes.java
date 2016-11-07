@@ -3,9 +3,7 @@ package me.BadBones69.CrazyRunes.API;
 import java.util.HashMap;
 
 import org.bukkit.entity.Player;
-import org.bukkit.permissions.PermissionAttachmentInfo;
 
-import me.BadBones69.CrazyRunes.Api;
 import me.BadBones69.CrazyRunes.Main;
 import me.BadBones69.CrazyRunes.Controlers.RuneControl;
 
@@ -13,6 +11,7 @@ public class PlayerRunes {
 	
 	private static HashMap<Player, HashMap<Rune, Integer>> playerStats = new HashMap<Player, HashMap<Rune, Integer>>();
 	private static HashMap<Player, HashMap<Rune, Boolean>> playerActivations = new HashMap<Player, HashMap<Rune, Boolean>>();
+	private static HashMap<Player, Integer> maxCredits = new HashMap<Player, Integer>();
 	
 	public static void loadPlayer(Player player){
 		String uuid = player.getUniqueId().toString();
@@ -27,11 +26,13 @@ public class PlayerRunes {
 					activations.put(rune, false);
 				}
 			}
+			maxCredits.put(player, Main.settings.getData().getInt("Players." + uuid + ".Max-Credits"));
 		}else{
 			for(Rune rune : Main.runes.getRunes()){
 				stats.put(rune, 0);
 				activations.put(rune, false);
 			}
+			maxCredits.put(player, Main.settings.getConfig().getInt("Settings.Default-Credits-Amount"));
 		}
 		playerStats.put(player, stats);
 		playerActivations.put(player, activations);
@@ -41,6 +42,7 @@ public class PlayerRunes {
 	public static void unLoadPlayer(Player player){
 		String uuid = player.getUniqueId().toString();
 		Main.settings.getData().set("Players." + uuid + ".Name", player.getName());
+		Main.settings.getData().set("Players." + uuid + ".Max-Credits", maxCredits.get(player));
 		for(Rune rune : Main.runes.getRunes()){
 			Main.settings.getData().set("Players." + uuid + "." + rune.getName() + ".Level", playerStats.get(player).get(rune));
 			if(playerStats.get(player).get(rune) > 0){
@@ -51,6 +53,7 @@ public class PlayerRunes {
 		}
 		Main.settings.saveData();
 		deActivateRunes(player);
+		maxCredits.remove(player);
 		playerStats.remove(player);
 		playerActivations.remove(player);
 	}
@@ -58,10 +61,10 @@ public class PlayerRunes {
 	public static void activateRunes(Player player){
 		RuneControl.setMedic(player, playerStats.get(player).get(Rune.MEDIC));
 		RuneControl.setSpeed(player, playerStats.get(player).get(Rune.SPEED));
-		if(playerStats.get(player).get(Rune.SURVIVER) > 0){
-			RuneControl.setSurviver(player, true);
+		if(playerStats.get(player).get(Rune.SURVIVOR) > 0){
+			RuneControl.setSurvivor(player, true);
 		}else{
-			RuneControl.setSurviver(player, false);
+			RuneControl.setSurvivor(player, false);
 		}
 		RuneControl.setTank(player, playerStats.get(player).get(Rune.TANK));
 	}
@@ -69,7 +72,7 @@ public class PlayerRunes {
 	public static void deActivateRunes(Player player){
 		RuneControl.setMedic(player, 0);
 		RuneControl.setSpeed(player, 0);
-		RuneControl.setSurviver(player, false);
+		RuneControl.setSurvivor(player, false);
 		RuneControl.setTank(player, 0);
 	}
 	
@@ -90,19 +93,19 @@ public class PlayerRunes {
 	}
 	
 	public static Integer getMaxCredits(Player player){
-		int credits = 0;
-		for(PermissionAttachmentInfo Permission : player.getEffectivePermissions()){
-			String perm = Permission.getPermission();
-			if(perm.startsWith("crazyrunes.credits.")){
-				perm=perm.replace("crazyrunes.credits.", "");
-				if(Api.isInt(perm)){
-					if(Integer.parseInt(perm) > credits){
-						credits = Integer.parseInt(perm);
-					}
-				}
-			}
+		return maxCredits.get(player);
+	}
+	
+	public static void addCredits(Player player, int amount){
+		maxCredits.put(player, maxCredits.get(player)+amount);
+	}
+	
+	public static void removeCredits(Player player, int amount){
+		amount = maxCredits.get(player)-amount;
+		if(amount < 0){
+			amount = 0;
 		}
-		return credits;
+		maxCredits.put(player, amount);
 	}
 	
 	public static Integer getAvailableCredits(Player player){
@@ -110,7 +113,9 @@ public class PlayerRunes {
 		int used = 0;
 		int max = getMaxCredits(player);
 		for(Rune rune : Main.runes.getRunes()){
-			used += getRuneLevel(player, rune);
+			for(int i = 1; i <= getRuneLevel(player, rune); i++){
+				used += Main.runes.getLevelCost(rune, i);
+			}
 		}
 		available = (max - used);
 		if(available < 0){

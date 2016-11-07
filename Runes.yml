@@ -11,7 +11,14 @@ Runes:
       - '&7before coming back to finish off the enemy.'
       - '&6Level: &3%Level%'
     Level-Description:
-      - '&7Gives you Regeneration %Level%.'
+      - '&7Gives you Regeneration %Power%.'
+      - '&6Level&7: %Level%'
+      - '&6Cost&7: &a%Cost% Runes'
+      - '&6Total-Cost&7: &3%TotalCost% Runes'
+    Level-Costs:
+      1: 1
+      2: 5
+      3: 10
   Tank:
     Name: 'Tank'
     Active: True
@@ -24,7 +31,14 @@ Runes:
       - '&7from the fight.'
       - '&6Level: &3%Level%'
     Level-Description:
-      - '&7Gives you %Level% extra hearts.'
+      - '&7Gives you %Power% extra hearts.'
+      - '&6Level&7: %Level%'
+      - '&6Cost&7: &a%Cost% Runes'
+      - '&6Total-Cost&7: &3%TotalCost% Runes'
+    Level-Costs:
+      1: 1
+      2: 5
+      3: 10
   Pyro:
     Name: 'Pyro'
     Active: True
@@ -36,20 +50,34 @@ Runes:
         - '&7and deal some heavy burn damage while fighting.'
         - '&6Level: &3%Level%'
     Level-Description:
-      - '&7Has a %Level%% chance to set fire to the enemy.'
-  Surviver:
-    Name: 'Surviver'
+      - '&7Has a %Power%% chance to set fire to the enemy.'
+      - '&6Level&7: %Level%'
+      - '&6Cost&7: &a%Cost% Runes'
+      - '&6Total-Cost&7: &3%TotalCost% Runes'
+    Level-Costs:
+      1: 1
+      2: 5
+      3: 10
+      4: 15
+      5: 20
+  Survivor:
+    Name: 'Survivor'
     Active: True
     Item: '294'
     Slot: 17
     Description:
-        - '&7Surviver has the ability fight and never feel hungry.'
+        - '&7Survivor has the ability fight and never feel hungry.'
         - '&7This allows the player to go into fights and not need to'
         - '&7flee to eat or to stop getting kills because they need'
         - '&7to feast on something in order to heal up.'
         - '&6Level: &3%Level%'
     Level-Description:
       - '&7Gives you no hunger.'
+      - '&6Level&7: %Level%'
+      - '&6Cost&7: &a%Cost% Runes'
+      - '&6Total-Cost&7: &3%TotalCost% Runes'
+    Level-Costs:
+      1: 5
   Leech:
     Name: 'Leech'
     Active: True
@@ -61,7 +89,15 @@ Runes:
         - '&7let them heal up while fighting dangerous enemies.'
         - '&6Level: &3%Level%'
     Level-Description:
-      - '&7Has a %Level%% chance of taking the enemys health.'
+      - '&7Has a %Power%% chance of taking the enemies health.'
+      - '&6Level&7: %Level%'
+      - '&6Cost&7: &a%Cost% Runes'
+      - '&6Total-Cost&7: &3%TotalCost% Runes'
+    Level-Costs:
+      1: 1
+      2: 5
+      3: 10
+      4: 15
   Reborn:
     Name: 'Reborn'
     Active: True
@@ -74,7 +110,14 @@ Runes:
         - '&7go and take out your enemy or retreat to fight another time.'
         - '&6Level: &3%Level%'
     Level-Description:
-      - '&7Has a %Level%% chance to set you at haft health at when low.'
+      - '&7Has a %Power%% chance to set you at haft health at when low.'
+      - '&6Level&7: %Level%'
+      - '&6Cost&7: &a%Cost% Runes'
+      - '&6Total-Cost&7: &3%TotalCost% Runes'
+    Level-Costs:
+      1: 1
+      2: 5
+      3: 10
   Rocket:
     Name: 'Rocket'
     Active: True
@@ -86,7 +129,15 @@ Runes:
         - '&7get a break from a battle.'
         - '&6Level: &3%Level%'
     Level-Description:
-      - '&7Has a %Level%% chance to send you flying away from the enemy.'
+      - '&7Has a %Power%% chance to send you flying away from the enemy.'
+      - '&6Level&7: %Level%'
+      - '&6Cost&7: &a%Cost% Runes'
+      - '&6Total-Cost&7: &3%TotalCost% Runes'
+    Level-Costs:
+      1: 1
+      2: 5
+      3: 10
+      4: 15
   Speed:
     Name: 'Speed'
     Active: True
@@ -99,4 +150,10 @@ Runes:
         - '&7to fallow them as they try and survive the fight.'
         - '&6Level: &3%Level%'
     Level-Description:
-      - '&7Gives you %Level%% faster movement.'
+      - '&7Gives you %Power%% faster movement.'
+      - '&6Level&7: %Level%'
+      - '&6Cost&7: &a%Cost% Runes'
+      - '&6Total-Cost&7: &3%TotalCost% Runes'
+    Level-Costs:
+      1: 5
+      2: 10

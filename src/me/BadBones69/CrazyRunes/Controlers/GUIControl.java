@@ -49,13 +49,17 @@ public class GUIControl implements Listener{
 			toggler = Api.makeItem("152", 1, "&4&lDeactivated", Arrays.asList("&7Click a level to activate."));
 		}
 		inv.setItem(0, toggler);
+		int total = 0;
 		for(int i = 1; i <= max; i++){
 			ItemStack block = null;
 			List<String> Lore = new ArrayList<String>();
+			total += Main.runes.getLevelCost(rune, i);
 			for(String lore : Main.runes.getLevelDescription(rune)){
-				Lore.add(lore.replaceAll("%Level%", rune.getPower() * i + "").replaceAll("%level%", rune.getPower() * i + ""));
+				Lore.add(lore.replaceAll("%Power%", rune.getPower() * i + "").replaceAll("%power%", rune.getPower() * i + "")
+						.replaceAll("%Level%", i+ "").replaceAll("%level%", i+ "")
+						.replaceAll("%Cost%", Main.runes.getLevelCost(rune, i)+ "").replaceAll("%cost%", Main.runes.getLevelCost(rune, i)+ "")
+						.replaceAll("%TotalCost%", total+ "").replaceAll("%totalcost%", total+ ""));
 			}
-			Lore.add("&6Level: &7" + i);
 			if(i <= PlayerRunes.getRuneLevel(player, rune)){
 				block = Api.makeItem("35:5", 1, "&a&lUnLocked", Lore);
 			}else{
@@ -113,11 +117,14 @@ public class GUIControl implements Listener{
 							int slot = e.getRawSlot();
 							if(slot < inv.getSize()){
 								int credits = PlayerRunes.getAvailableCredits(player);
-								int left = slot - PlayerRunes.getRuneLevel(player, rune);
+								int cost = 0;
+								for(int i = 1; i <= slot; i++){
+									cost += Main.runes.getLevelCost(rune, i);
+								}
 								if(PlayerRunes.getRuneLevel(player, rune) == slot){
 									return;
 								}
-								if((credits - left) < 0){
+								if((credits - cost) < 0){
 									return;
 								}
 								PlayerRunes.setRuneLevel(player, rune, slot);
